@@ -23,6 +23,7 @@ function App() {
           onChange={handleOnChange}
         />
       </Sidebar>
+      {/* composant estimé comme lourd */}
       <Dashboard user={user} />
     </div>
   );
