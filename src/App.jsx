@@ -4,6 +4,8 @@ import Dashboard from './components/Dasboard';
 import Sidebar from './components/Sidebar';
 import SearchField from './components/SearchField';
 
+const PureDashboard = memo(Dashboard, (prev, next) => prev.user === next.user);
+
 function App() {
   const user = useMemo(() => ({ name: 'Seb' }), []);
   const [searchTerm, setSearchTerm] = useState(user.name);
@@ -13,7 +15,6 @@ function App() {
   };
 
   console.log('rendering App');
-  const PureDashboard = memo(Dashboard, () => false);
 
   return (
     <div className="App">
