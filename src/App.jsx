@@ -1,4 +1,4 @@
-import React, { useState, memo } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Dashboard from './components/Dasboard';
 import Sidebar from './components/Sidebar';
@@ -13,7 +13,6 @@ function App() {
   };
 
   console.log('rendering App');
-  const PureDashboard = memo(Dashboard, () => true);
 
   return (
     <div className="App">
@@ -25,7 +24,7 @@ function App() {
         />
       </Sidebar>
       {/* composant estimé comme lourd */}
-      <PureDashboard user={user} />
+      <Dashboard user={user} />
     </div>
   );
 }
