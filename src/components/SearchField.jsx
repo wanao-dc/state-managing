@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import PropTypes from 'prop-types';
 
-function SearchField({ searchTerm, onChange = (f) => f }) {
+function SearchField({ user }) {
+  const [searchTerm, setSearchTerm] = useState(user.name);
+
+  const handleOnChange = (newSearchTerm) => {
+    setSearchTerm(newSearchTerm.target.value);
+  };
   console.log('rendering SearchField');
   return (
-    <input onChange={onChange} value={searchTerm} />
+    <input onChange={handleOnChange} value={searchTerm} />
   );
 }
 
 SearchField.propTypes = {
-  searchTerm: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
 };
 export default SearchField;
