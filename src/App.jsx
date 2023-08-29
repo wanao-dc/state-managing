@@ -1,11 +1,11 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, memo } from 'react';
 import './App.css';
 import Dashboard from './components/Dasboard';
 import Sidebar from './components/Sidebar';
 import SearchField from './components/SearchField';
 
 function App() {
-  const user = useMemo(() => ({ name: 'Seb' }), null);
+  const user = useMemo(() => ({ name: 'Seb' }), []);
   const [searchTerm, setSearchTerm] = useState(user.name);
 
   const handleOnChange = (newSearchTerm) => {
@@ -13,6 +13,7 @@ function App() {
   };
 
   console.log('rendering App');
+  const PureDashboard = memo(Dashboard, () => false);
 
   return (
     <div className="App">
@@ -24,7 +25,7 @@ function App() {
         />
       </Sidebar>
       {/* composant estimé comme lourd */}
-      <Dashboard user={user} />
+      <PureDashboard user={user} />
     </div>
   );
 }
