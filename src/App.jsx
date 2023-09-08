@@ -1,4 +1,4 @@
-import React, { useState, useMemo, memo } from 'react';
+import React, { useState, memo, useRef } from 'react';
 import './App.css';
 import Dashboard from './components/Dasboard';
 import Sidebar from './components/Sidebar';
@@ -7,11 +7,14 @@ import SearchField from './components/SearchField';
 const PureDashboard = memo(Dashboard, (prev, next) => prev.user === next.user);
 
 function App() {
-  const user = useMemo(() => ({ name: 'Seb' }), []);
+  const { current: user } = useRef({ name: 'Seb' });
   const [searchTerm, setSearchTerm] = useState(user.name);
 
+  console.log(user, 'user');
+
   const handleOnChange = (newSearchTerm) => {
-    setSearchTerm(newSearchTerm.target.value);
+    user.letter = newSearchTerm.target.value;
+    // setSearchTerm(newSearchTerm.target.value);
   };
 
   console.log('rendering App');
